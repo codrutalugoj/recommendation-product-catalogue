@@ -29,8 +29,10 @@ I first create blocks of products (and then pairs) to be checked for similarity 
 I create the blocks based the first word of product names. I thought this is the most reliable piece of information about potential duplicates. However, it does result in large blocks with about 600 entities to be checked for companies with a lot of products like Adobe.
 
 I then have a 2-step hybrid matching pipeline where I:
-- first calculate the Jaro-Winkler similarity between names. If this is 1, this is a match. If it's below 0.6 I consider it a no-match (products are distinct). 
-For cases above 0.6 but not 1, I then compute the cosine similarity on TD-IDF tokenized descriptions (or categories if descriptions are missing). Cosine similarities above 0.8 are deemed matches.
+
+1. calculate the Jaro-Winkler similarity between names. If this is 1, this is a match. If it's below 0.6 I consider it a no-match (products are distinct). 
+
+2. for cases above 0.6 but not 1, I then compute the cosine similarity on TD-IDF tokenized descriptions (or categories if descriptions are missing). Cosine similarities above 0.8 are deemed matches.
 The thresholds were mostly chosen based on intuition and checking what other people in the field do.
 
 
